@@ -148,6 +148,8 @@ public:
             // Based on Apache Portable Runtime
             // http://koders.com/c/fid3B6631EE94542CDBAA03E822CA780CBA1B024822.aspx
             int32 ret = m_value;
+            if (m_value == comperand)
+                m_value = exchange;
             /*asm volatile ("lock; cmpxchgl %1, %2"
                           : "=a" (ret)
                           : "r" (exchange), "m" (m_value), "0"(comperand)
