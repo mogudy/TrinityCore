@@ -1701,15 +1701,15 @@ void System::cpuid(CPUIDFunction func, uint32& areg, uint32& breg, uint32& creg,
     uint32 a,b,c,d;
 
     // Intel assembler syntax
-    __asm {
-        mov	  eax, func      //  eax <- func
-        mov   ecx, 0
-        cpuid              
-        mov   a, eax   
-        mov   b, ebx   
-        mov   c, ecx   
-        mov   d, edx
-    }
+//    __asm {
+//        mov	  eax, func      //  eax <- func
+//        mov   ecx, 0
+//        cpuid              
+//        mov   a, eax   
+//        mov   b, ebx   
+//        mov   c, ecx   
+//        mov   d, edx
+//    }
     areg = a;
     breg = b; 
     creg = c;
@@ -1742,21 +1742,21 @@ void System::cpuid(CPUIDFunction func, uint32& eax, uint32& ebx, uint32& ecx, ui
 void System::cpuid(CPUIDFunction func, uint32& eax, uint32& ebx, uint32& ecx, uint32& edx) {
 #if ! defined(__PIC__) || defined(__x86_64__)
     // AT&T assembler syntax
-    asm volatile(
-                 "movl $0, %%ecx   \n\n" /* Wipe ecx */
-                 "cpuid            \n\t"
-                 : "=a"(eax), "=b"(ebx), "=c"(ecx), "=d"(edx)
-                 : "a"(func));
+//    asm volatile(
+//                 "movl $0, %%ecx   \n\n" // Wipe ecx 
+//                 "cpuid            \n\t"
+//                 : "=a"(eax), "=b"(ebx), "=c"(ecx), "=d"(edx)
+//                 : "a"(func));
 #else
     // AT&T assembler syntax
-    asm volatile(
-                 "pushl %%ebx      \n\t" /* save ebx */
-                 "movl $0, %%ecx   \n\n" /* Wipe ecx */
-                 "cpuid            \n\t"
-                 "movl %%ebx, %1   \n\t" /* save what cpuid just put in %ebx */
-                 "popl %%ebx       \n\t" /* restore the old ebx */
-                 : "=a"(eax), "=r"(ebx), "=c"(ecx), "=d"(edx)
-                 : "a"(func));
+//    asm volatile(
+//                 "pushl %%ebx      \n\t" /* save ebx */
+//                 "movl $0, %%ecx   \n\n" /* Wipe ecx */
+//                 "cpuid            \n\t"
+//                 "movl %%ebx, %1   \n\t" /* save what cpuid just put in %ebx */
+//                 "popl %%ebx       \n\t" /* restore the old ebx */
+//                 : "=a"(eax), "=r"(ebx), "=c"(ecx), "=d"(edx)
+//                 : "a"(func));
 #endif
 }
 

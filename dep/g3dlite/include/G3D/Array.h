@@ -132,7 +132,7 @@ private:
 
 
     /** Only compiled if you use the sort procedure. */
-    static bool __cdecl compareGT(const T& a, const T& b) {
+    static bool compareGT(const T& a, const T& b) {
         return a > b;
     }
 
@@ -918,7 +918,7 @@ public:
      Sort using a specific less-than function, e.g.:
 
   <PRE>
-    bool __cdecl myLT(const MyClass& elem1, const MyClass& elem2) {
+    bool myLT(const MyClass& elem1, const MyClass& elem2) {
         return elem1.x < elem2.x;
     }
     </PRE>
@@ -927,7 +927,7 @@ public:
   <I>after</I> the class name, e.g., <CODE>Array<MyClass*></CODE> uses:
 
   <PRE>
-    bool __cdecl myLT(MyClass*const& elem1, MyClass*const& elem2) {
+    bool myLT(MyClass*const& elem1, MyClass*const& elem2) {
         return elem1->x < elem2->x;
     }
     </PRE>
@@ -983,7 +983,7 @@ return( lhs < rhs? true : false );
         }
     }
 
-    void sortSubArray(int beginIndex, int endIndex, bool (__cdecl *lessThan)(const T& elem1, const T& elem2)) {
+    void sortSubArray(int beginIndex, int endIndex, bool (*lessThan)(const T& elem1, const T& elem2)) {
         std::sort(data + beginIndex, data + endIndex + 1, lessThan);
     }
 
