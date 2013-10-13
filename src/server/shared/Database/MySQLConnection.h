@@ -16,6 +16,7 @@
  */
 
 #include <ace/Activation_Queue.h>
+#include <ace/OS.h>
 
 #include "DatabaseWorkerPool.h"
 #include "Transaction.h"
